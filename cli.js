@@ -1,7 +1,7 @@
-const Employee = require("./lib/Employee")
-const Engineer = require("./lib/Engineer")
-const Intern = require("./lib/Intern")
-const Manager = require("./lib/Manager")
+const Employee = require("./lib/Employee");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
 const inquirer = require("inquirer");
 
 // select the position of the person you are entering
@@ -9,10 +9,9 @@ var positionSelect = [
     {
         type: 'list',
         name: 'position',
-        message: 'What is thier current position?',
+        message: 'What role does the Current Employee take?',
         choices: [
             'Intern',
-            'Employee',
             'Engineer',
             'Manager'
         ]
@@ -46,25 +45,6 @@ function internQues() {
         }]
     return intern;
 
-}
-function employeeQues() {
-    employee = [
-        {
-            type: "input",
-            name: "name",
-            message: "What is the Employee's Name?"
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "What is thier ID number?"
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "What is thier Email?"
-        }]
-    return employee;
 }
 
 function engineerQues() {
@@ -132,17 +112,9 @@ promtUser()
                     const id = answer.id;
                     const email = answer.email;
                     const school = answer.school;
-                    const cardArray = [name, id, email, school];
-                    console.log(cardArray)
-                })
-        } else if (res.position === 'Employee') {
-            inquirer.prompt(employeeQues())
-                .then(answer => {
-                    const name = answer.name;
-                    const id = answer.id;
-                    const email = answer.email;
-                    const cardArray = [name, id, email];
-                    console.log(cardArray)
+                    // const cardArray = [name, id, email, school];
+                    // console.log(cardArray)
+                    const intern = new Intern(name, id, email, school);
                 })
         } else if (res.position === 'Engineer') {
             inquirer.prompt(engineerQues())
@@ -151,8 +123,9 @@ promtUser()
                     const id = answer.id;
                     const email = answer.email;
                     const github = answer.github;
-                    const cardArray = [name, id, email, github];
-                    console.log(cardArray)
+                    // const cardArray = [name, id, email, github];
+                    // console.log(cardArray)
+                    const engineer = new Engineer(name, id, email, github);
                 })
         } else if (res.position === 'Manager') {
             inquirer.prompt(managerQues())
@@ -161,9 +134,10 @@ promtUser()
                     const id = answer.id;
                     const email = answer.email;
                     const officeNum = answer.officeNum;
-                    const cardArray = [name, id, email, officeNum];
-                    console.log(cardArray)
+                    // const cardArray = [name, id, email, officeNum];
+                    // console.log(cardArray)
+                    const manager = Manager(name, id, email, officeNum);
                 })
         }
-
+        // write logic for continuing and ending
     })

@@ -44,9 +44,7 @@ function internQues() {
             message: "What is the school they are attending?"
         }]
     return intern;
-
 }
-
 function engineerQues() {
     engineer = [
         {
@@ -96,8 +94,6 @@ function managerQues() {
     return manager;
 }
 
-
-
 function promtUser() {
     return inquirer.prompt(positionSelect);
 }
@@ -112,9 +108,11 @@ promtUser()
                     const id = answer.id;
                     const email = answer.email;
                     const school = answer.school;
-                    // const cardArray = [name, id, email, school];
-                    // console.log(cardArray)
-                    const intern = new Intern(name, id, email, school);
+                    const arr = [name, id, email, school];
+                    console.log(arr)
+                    // Create new object
+                    const internNew = new Intern(name, id, email, school);
+                    internNew.makeCard();
                 })
         } else if (res.position === 'Engineer') {
             inquirer.prompt(engineerQues())
@@ -123,9 +121,9 @@ promtUser()
                     const id = answer.id;
                     const email = answer.email;
                     const github = answer.github;
-                    // const cardArray = [name, id, email, github];
-                    // console.log(cardArray)
-                    const engineer = new Engineer(name, id, email, github);
+                    // Create new object
+                    const engineerNew = new Engineer(name, id, email, github);
+                    engineerNew.makeCard();
                 })
         } else if (res.position === 'Manager') {
             inquirer.prompt(managerQues())
@@ -134,9 +132,9 @@ promtUser()
                     const id = answer.id;
                     const email = answer.email;
                     const officeNum = answer.officeNum;
-                    // const cardArray = [name, id, email, officeNum];
-                    // console.log(cardArray)
-                    const manager = Manager(name, id, email, officeNum);
+                    // Create new object
+                    const managerNew = new Manager(name, id, email, officeNum);
+                    managerNew.makeCard();
                 })
         }
         // write logic for continuing and ending

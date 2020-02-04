@@ -47,11 +47,11 @@ function createHTML(res) {
         </div>
         <div class="row" style="padding: 2rem;">
             <div class="col col-md-3" style="margin: 20px;">
-    
+             
             </div>
         </div>
     
     </body>
     
     </html>`
-}
+} module.exports = createHTML;

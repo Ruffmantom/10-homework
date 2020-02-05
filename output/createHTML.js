@@ -29,7 +29,7 @@ function createHTML(res) {
             }
             .card {
                 background-color: rgb(219, 219, 219);
-                margin: 0 15px;
+                margin: 10px 15px;
             }
             .name {
                 font-size: 25px;

@@ -119,7 +119,7 @@ const team = [];
 
 // function that holds a task of creating the html page
 function writeHTML(team) {
-    fs.writeFile('team.html', createHTML(team), (err) => {
+    fs.writeFile('./output/team.html', createHTML(team), (err) => {
         if (err) throw err;
     })
     console.log('Succses! check for your new HTML page!')
@@ -129,7 +129,13 @@ function askUserLogic(res) {
     if (res.position === 'Intern') {
         inquirer.prompt(internQues())
             .then(answer => {
-                const name = answer.name;
+                const resName = answer.name.toLowerCase().split(' ');
+                console.log(resName);
+                for (var i = 0, x = resName.length; i < x; i++) {
+                    resName[i] = resName[i][0].toUpperCase() + resName[i].substr(1);
+                }
+                var name = resName.join(" ");
+                console.log(name);
                 const id = answer.id;
                 const email = answer.email;
                 const school = answer.school;
@@ -157,7 +163,13 @@ function askUserLogic(res) {
     } else if (res.position === 'Engineer') {
         inquirer.prompt(engineerQues())
             .then(answer => {
-                const name = answer.name;
+                const resName = answer.name.toLowerCase().split(' ');
+                console.log(resName);
+                for (var i = 0, x = resName.length; i < x; i++) {
+                    resName[i] = resName[i][0].toUpperCase() + resName[i].substr(1);
+                }
+                var name = resName.join(" ");
+                console.log(name);
                 const id = answer.id;
                 const email = answer.email;
                 const github = answer.github;
@@ -183,7 +195,13 @@ function askUserLogic(res) {
     } else if (res.position === 'Manager') {
         inquirer.prompt(managerQues())
             .then(answer => {
-                const name = answer.name;
+                const resName = answer.name.toLowerCase().split(' ');
+                console.log(resName);
+                for (var i = 0, x = resName.length; i < x; i++) {
+                    resName[i] = resName[i][0].toUpperCase() + resName[i].substr(1);
+                }
+                var name = resName.join(" ");
+                console.log(name);
                 const id = answer.id;
                 const email = answer.email;
                 const officeNum = answer.officeNum;

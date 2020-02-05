@@ -4,6 +4,7 @@ const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const inquirer = require("inquirer");
 const fs = require('fs');
+const HTML = require("./output/createHTML")
 
 // select the position of the person you are entering
 var positionSelect = [
@@ -110,9 +111,12 @@ function managerQues() {
 
     return manager;
 }
-function promtUser() {
+// prompting user
+function promptUser() {
     return inquirer.prompt(positionSelect);
 }
+// make array full of objects to add to html when file is finished
+const team = [];
 function askUserLogic(res) {
     if (res.position === 'Intern') {
         inquirer.prompt(internQues())
@@ -125,16 +129,18 @@ function askUserLogic(res) {
                 console.log(arr)
                 // Create new object
                 const internNew = new Intern(name, id, email, school);
-                internNew.makeCard();
+                let Icard = internNew.makeCard();
+                team.push(Icard)
+                // ask user to make new card or leave
                 newCard()
                     .then(function (res) {
                         if (res.createAgain === "Yes") {
-                            promtUser(positionSelect)
+                            promptUser(positionSelect)
                                 .then(function (res) {
                                     askUserLogic(res)
                                 })
                         } else {
-                            console.log('noped');
+                            console.log('Exiting CLI program');
                         }
                     })
             })
@@ -147,16 +153,18 @@ function askUserLogic(res) {
                 const github = answer.github;
                 // Create new object
                 const engineerNew = new Engineer(name, id, email, github);
-                engineerNew.makeCard();
+                let Ecard = engineerNew.makeCard();
+                team.push(Ecard);
+                // ask user to make new card or leave
                 newCard()
                     .then(function (res) {
                         if (res.createAgain === "Yes") {
-                            promtUser(positionSelect)
+                            promptUser(positionSelect)
                                 .then(function (res) {
                                     askUserLogic(res)
                                 })
                         } else {
-                            console.log('noped');
+                            console.log('Exiting CLI program');
                         }
                     })
             })
@@ -169,24 +177,28 @@ function askUserLogic(res) {
                 const officeNum = answer.officeNum;
                 // Create new object
                 const managerNew = new Manager(name, id, email, officeNum);
-                managerNew.makeCard();
+                let Mcard = managerNew.makeCard();
+                team.push(Mcard);
+                // ask user to make new card or leave
                 newCard()
                     .then(function (res) {
                         if (res.createAgain === "Yes") {
-                            promtUser(positionSelect)
+                            promptUser(positionSelect)
                                 .then(function (res) {
                                     askUserLogic(res)
                                 })
                         } else {
-                            console.log('noped');
+                            console.log('Exiting CLI program');
                         }
                     })
             })
     }
 }
-promtUser()
+
+promptUser()
     .then(function (res) {
         // console.log(res)
         askUserLogic(res)
+        console.log(team);
         // write logic for continuing and ending
     })

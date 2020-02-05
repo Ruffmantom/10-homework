@@ -116,6 +116,7 @@ function promptUser() {
 }
 // make array full of objects to add to html when file is finished
 const team = [];
+
 // function that holds a task of creating the html page
 function writeHTML(team) {
     fs.writeFile('team.html', createHTML(team), (err) => {

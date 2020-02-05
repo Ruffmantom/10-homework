@@ -4,9 +4,10 @@ const Intern = require("../lib/Intern");
 const Manager = require("../lib/Manager");
 
 function createHTML(res) {
+
     return `<!DOCTYPE html>
     <html lang="en">
-    
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,7 @@ function createHTML(res) {
                 border: 1px solid rgb(219, 219, 219);
                 border-radius: 3px;
                 margin: 2px auto;
-    
+
             }
             .row {
                 justify-content: center;
@@ -49,10 +50,13 @@ function createHTML(res) {
                 <h1 class="display-4">Team Page</h1>
             </div>
         </div>
-        
+
         <div class="row" style="margin: 20px; display: flex; width: 100%;">
-            ${res}
+            ${res.join(' ')}
         </div>
     </body>
     </html>`
-} module.exports = createHTML;
+
+}
+
+module.exports = createHTML;

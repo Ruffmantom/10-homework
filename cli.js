@@ -4,7 +4,7 @@ const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const inquirer = require("inquirer");
 const fs = require('fs');
-const HTML = require("./output/createHTML")
+const createHTML = require("./output/createHTML")
 
 // select the position of the person you are entering
 var positionSelect = [
@@ -19,8 +19,7 @@ var positionSelect = [
         ]
     }
 ];
-// need to make question select for the user 
-// if they want to continue to add more or end session
+// asking user if they want to make new card
 const continueQues = [
     {
         type: 'list',
@@ -117,6 +116,14 @@ function promptUser() {
 }
 // make array full of objects to add to html when file is finished
 const team = [];
+// function that holds a task of creating the html page
+function writeHTML(team) {
+    fs.writeFile('team.html', createHTML(team), (err) => {
+        if (err) throw err;
+    })
+    console.log('Succses! check for your new HTML page!')
+}
+// logic to ask questions and get the data back
 function askUserLogic(res) {
     if (res.position === 'Intern') {
         inquirer.prompt(internQues())
@@ -130,6 +137,7 @@ function askUserLogic(res) {
                 // Create new object
                 const internNew = new Intern(name, id, email, school);
                 let Icard = internNew.makeCard();
+                // pushes card to team array in html string format
                 team.push(Icard)
                 // ask user to make new card or leave
                 newCard()
@@ -141,6 +149,7 @@ function askUserLogic(res) {
                                 })
                         } else {
                             console.log('Exiting CLI program');
+                            writeHTML(team);
                         }
                     })
             })
@@ -154,6 +163,7 @@ function askUserLogic(res) {
                 // Create new object
                 const engineerNew = new Engineer(name, id, email, github);
                 let Ecard = engineerNew.makeCard();
+                // pushes card to team array in html string format
                 team.push(Ecard);
                 // ask user to make new card or leave
                 newCard()
@@ -165,6 +175,7 @@ function askUserLogic(res) {
                                 })
                         } else {
                             console.log('Exiting CLI program');
+                            writeHTML(team);
                         }
                     })
             })
@@ -178,6 +189,7 @@ function askUserLogic(res) {
                 // Create new object
                 const managerNew = new Manager(name, id, email, officeNum);
                 let Mcard = managerNew.makeCard();
+                // pushes card to team array in html string format
                 team.push(Mcard);
                 // ask user to make new card or leave
                 newCard()
@@ -186,19 +198,20 @@ function askUserLogic(res) {
                             promptUser(positionSelect)
                                 .then(function (res) {
                                     askUserLogic(res)
+
                                 })
                         } else {
                             console.log('Exiting CLI program');
+                            writeHTML(team);
                         }
                     })
             })
     }
 }
 
+// this is to run the whole program
 promptUser()
     .then(function (res) {
-        // console.log(res)
         askUserLogic(res)
-        console.log(team);
-        // write logic for continuing and ending
     })
+

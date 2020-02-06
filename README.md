@@ -8,6 +8,7 @@ Had a lot of fun making creating this CLI program. it really made me see how muc
 ## program working
 
 - Gifs
+
 [making a employee card](https://media.giphy.com/media/kDftBHKeQzfOG5LzzY/giphy.gif)
 
 [making another employee card](https://media.giphy.com/media/mD3vSYo10V70FLeGF3/giphy.gif)
@@ -15,6 +16,7 @@ Had a lot of fun making creating this CLI program. it really made me see how muc
 [program finishing up](https://media.giphy.com/media/hofA4biPBskbwGl96Z/giphy.gif)
 
 - Images
+
 [image of making card](Assets/makingCard.png)
 
 [image of final product](Assets/finalProduct.png)
